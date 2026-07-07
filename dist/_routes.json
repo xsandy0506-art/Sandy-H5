@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*",
+    "/background-music.m4a",
+    "/center-lantern.jpg",
+    "/day-aerial.jpg",
+    "/gallery.jpg",
+    "/night-aerial.jpg",
+    "/panorama*.mp4",
+    "/promenade.jpg",
+    "/scheme-plan.jpg",
+    "/waterfront.jpg",
+    "/welcome-gate.jpg"
+  ],
+  "rules": [
+    {
+      "condition": "if_not_file",
+      "route": "/index.html"
+    }
+  ]
+}
