@@ -4,3 +4,10 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# local-only working directories
+node_modules/
+gh-pages-temp/
+public/
+dist/
+*.log
