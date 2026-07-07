@@ -1,6 +1,12 @@
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+
+# local-only working directories
 node_modules/
-.vscode/
-.DS_Store
+gh-pages-temp/
+dist/
 *.log
-#dist/assets/ - dist folder is now tracked
-public/

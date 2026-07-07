@@ -1,4 +1,729 @@
-﻿html, body, #root { height: 100%; margin: 0; }
+﻿html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #fff4e6;
+  color: #262626;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.app {
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  background: #fff4e6;
+  overflow: hidden;
+}
+
+.audio-control-btn,
+.poster-close-btn,
+.history-modal-close,
+.dish-modal-close,
+.pkg-modal-close,
+.scheme-modal-close {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  color: #f97316;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.audio-control-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 999;
+}
+
+.loading-overlay,
+.intro-overlay,
+.poster-overlay,
+.scheme-modal-overlay,
+.blessing-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 15, 15, 0.74);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.loader {
+  width: min(92vw, 340px);
+  padding: 28px 24px;
+  border-radius: 24px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+  backdrop-filter: blur(12px);
+  color: #fff;
+}
+
+.brand-logo {
+  font-size: 42px;
+  margin-bottom: 16px;
+}
+
+.loader-text.brand-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.loader-text.brand-sub {
+  font-size: 14px;
+  opacity: 0.92;
+}
+
+.loader-progress {
+  height: 4px;
+  border-radius: 999px;
+  margin: 18px auto 0;
+  background: linear-gradient(90deg, #fb7185, #f59e0b);
+}
+
+.home-screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hero-background,
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-background {
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55) contrast(1.04);
+}
+
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(16,16,16,0.15), rgba(16,16,16,0.58));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-label {
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ffd78a;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.hero-copy,
+.section-copy,
+.dish-modal-desc,
+.history-modal-desc,
+.pkg-modal-desc,
+.craft-subtitle {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.hero-copy {
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 28px;
+}
+
+.hero-button,
+.cta-button,
+.menu-action,
+.dish-order-btn,
+.pkg-order-btn,
+.craft-next-btn,
+.craft-share-btn,
+.craft-restart-btn,
+.history-modal-btn,
+.intro-btn,
+.collect-button,
+.blessing-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: transform 0.18s ease, opacity 0.18s ease, background-color 0.18s ease;
+}
+
+.hero-button,
+.cta-button.primary,
+.dish-order-btn,
+.pkg-order-btn,
+.craft-next-btn,
+.craft-share-btn,
+.history-modal-btn,
+.menu-action,
+.collect-button {
+  background: linear-gradient(135deg, #ef4444, #d97706);
+  color: #fff;
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  padding: 12px 18px;
+  border-radius: 999px;
+}
+
+.page-body {
+  padding: 20px 16px 96px;
+}
+
+.section {
+  display: grid;
+  gap: 14px;
+}
+
+.card,
+.menu-item,
+.craft-card,
+.history-modal,
+.dish-modal,
+.pkg-modal,
+.scheme-modal-container,
+.poster-wrapper {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+}
+
+.card,
+.menu-item,
+.craft-card,
+.history-modal,
+.dish-modal,
+.pkg-modal,
+.scheme-modal-container,
+.poster-wrapper {
+  padding: 18px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.card-label,
+.section-title,
+.craft-title,
+.craft-card-title,
+.menu-hero-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #7c2d12;
+}
+
+.card-small {
+  font-size: 12px;
+  color: #7c7c7c;
+  line-height: 1.6;
+}
+
+.scene-frame {
+  position: relative;
+  min-height: 280px;
+  border-radius: 22px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.scene-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 280px;
+}
+
+.scene-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.72));
+}
+
+.scene-label,
+.scene-name,
+.scene-desc {
+  position: absolute;
+  z-index: 1;
+}
+
+.scene-label {
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+
+.scene-name {
+  left: 18px;
+  bottom: 48px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.scene-desc {
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.94);
+}
+
+.progress-wrapper {
+  flex: 1;
+  max-width: 120px;
+}
+
+.progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #fed7aa;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #fb7185, #f59e0b);
+}
+
+.scene-tabs,
+.menu-list,
+.timeline,
+.pkg-includes,
+.craft-shape-grid,
+.craft-pattern-grid,
+.blessing-phrases {
+  display: grid;
+  gap: 10px;
+}
+
+.scene-tabs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 14px 0;
+}
+
+.scene-button,
+.craft-shape-card,
+.craft-color-row {
+  border-radius: 18px;
+  padding: 12px;
+  background: #fff7ed;
+  border: 1px solid transparent;
+}
+
+.scene-button.active,
+.craft-shape-card.active {
+  border-color: #fb923c;
+  background: #fff1d6;
+}
+
+.scene-icon {
+  display: block;
+  font-size: 20px;
+}
+
+.scene-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.scene-checked {
+  display: block;
+  margin-top: 4px;
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.cta-button.disabled {
+  width: 100%;
+  background: #d6d3d1;
+  color: #78716c;
+}
+
+.cta-button.primary,
+.collect-button,
+.hero-button,
+.dish-order-btn,
+.pkg-order-btn,
+.craft-share-btn,
+.craft-next-btn,
+.menu-action,
+.history-modal-btn {
+  width: 100%;
+}
+
+.timeline-item,
+.menu-item,
+.pkg-btn,
+.craft-color-row {
+  width: 100%;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.timeline-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.timeline-era,
+.history-era-badge,
+.menu-tag,
+.pkg-badge,
+.craft-tag,
+.poster-top-label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f97316;
+}
+
+.timeline-title,
+.dish-modal-name,
+.pkg-modal-name,
+.history-modal-title,
+.craft-done-title,
+.poster-main-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.timeline-text,
+.dish-modal-subtitle,
+.pkg-modal-subtitle,
+.poster-sub-title,
+.craft-pattern-desc {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.menu-hero-copy,
+.pkg-modal-desc,
+.history-modal-quote,
+.poster-bottom-text {
+  color: #6b7280;
+}
+
+.menu-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+}
+
+.menu-thumb {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+}
+
+.menu-name,
+.pkg-btn-name,
+.craft-pattern-name,
+.craft-shape-label,
+.craft-color-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.dish-name-row,
+.pkg-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.menu-price,
+.pkg-modal-price,
+.dish-modal-price,
+.pkg-btn-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #dc2626;
+}
+
+.pkg-btn {
+  padding: 16px;
+  border-radius: 20px;
+  color: #fff;
+  text-align: left;
+}
+
+.pkg-btn-inner {
+  display: grid;
+  gap: 4px;
+}
+
+.pkg-inc-item,
+.dish-ing-tags,
+.poster-actions,
+.craft-btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dish-ing-tag,
+.craft-tag,
+.blessing-btn {
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.blessing-btn.active {
+  background: #ea580c;
+  color: #fff;
+}
+
+.craft-header {
+  margin-bottom: 8px;
+}
+
+.craft-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.craft-step-label {
+  position: relative;
+  text-align: center;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.craft-step-circle {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 6px;
+  border-radius: 999px;
+  border: 1px solid #fdba74;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.craft-step-line {
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 18px);
+  width: calc(100% - 24px);
+  height: 2px;
+  background: #fed7aa;
+}
+
+.craft-shape-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.craft-shape-svg {
+  width: 54px;
+  height: 54px;
+}
+
+.craft-pattern-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.craft-color-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.craft-color-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+}
+
+.craft-color-check {
+  margin-left: auto;
+}
+
+.craft-preview-wrap {
+  display: grid;
+  place-items: center;
+  padding: 12px 0;
+}
+
+.intro-video,
+.scheme-modal-image {
+  width: min(92vw, 430px);
+  max-height: 72vh;
+  border-radius: 20px;
+  object-fit: cover;
+  background: #000;
+}
+
+.intro-controls {
+  position: absolute;
+  bottom: 36px;
+}
+
+.intro-btn.skip,
+.craft-back-btn,
+.craft-restart-btn {
+  background: rgba(255,255,255,0.92);
+  color: #111827;
+}
+
+.history-modal,
+.dish-modal,
+.pkg-modal,
+.scheme-modal-container,
+.poster-wrapper {
+  width: min(92vw, 430px);
+  max-height: 88vh;
+  overflow: auto;
+}
+
+.history-modal-header,
+.dish-modal-header,
+.pkg-modal-header {
+  margin-bottom: 14px;
+}
+
+.pkg-modal-header {
+  margin: -18px -18px 14px;
+  padding: 18px;
+  color: #fff;
+  border-radius: 24px 24px 18px 18px;
+}
+
+.poster-content {
+  text-align: center;
+}
+
+.poster-blessing {
+  font-size: 30px;
+  font-weight: 800;
+  color: #ea580c;
+  margin: 18px 0;
+}
+
+.poster-lantern-area {
+  font-size: 56px;
+  margin-bottom: 18px;
+}
+
+.tabbar {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(100%, 430px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(148,163,184,0.2);
+  z-index: 99;
+}
+
+.tabbar button {
+  padding: 10px 6px;
+  border-radius: 14px;
+  background: transparent;
+  color: #6b7280;
+}
+
+.tabbar button.active {
+  background: #fff7ed;
+  color: #ea580c;
+  font-weight: 700;
+}
+
+@media (max-width: 380px) {
+  .scene-tabs,
+  .craft-pattern-grid,
+  .craft-shape-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-title,
+  .timeline-title,
+  .dish-modal-name,
+  .pkg-modal-name,
+  .history-modal-title {
+    font-size: 22px;
+  }
+}html, body, #root { height: 100%; margin: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #fff4e6; color: #262626; }
 * { box-sizing: border-box; }
 button { cursor: pointer; border: none; outline: none; }
