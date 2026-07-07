@@ -1,12 +1,17 @@
-# SPA routing - all requests go to index.html except static files
-/assets/*                         /assets/:splat         200
-/*.js                             /:path                 200
-/*.css                            /:path                 200
-/*.jpg                            /:path                 200
-/*.jpeg                           /:path                 200
-/*.png                            /:path                 200
-/*.gif                            /:path                 200
-/*.svg                            /:path                 200
-/*.mp4                            /:path                 200
-/*.m4a                            /:path                 200
-/*                                /index.html            200
+# Don't rewrite files.
+/assets/*                 /assets/:splat             200
+/*.js                      /:path                     200
+/*.css                     /:path                     200
+/*.jpg                     /:path                     200
+/*.jpeg                    /:path                     200
+/*.png                     /:path                     200
+/*.gif                     /:path                     200
+/*.svg                     /:path                     200
+/*.mp4                     /:path                     200
+/*.m4a                     /:path                     200
+/*.woff                    /:path                     200
+/*.woff2                   /:path                     200
+/*.ttf                     /:path                     200
+/*.eot                     /:path                     200
+# SPA routing
+/*                         /index.html                200
