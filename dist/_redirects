@@ -1,7 +1,12 @@
-# Cloudflare Pages SPA routing
-# Don't touch assets
-/assets/*    /assets/:splat    200
-# Rewrite API calls if needed
-# Route all other requests to index.html
-/index.html  /index.html       200
-/*           /index.html       200
+# SPA routing - all requests go to index.html except static files
+/assets/*                         /assets/:splat         200
+/*.js                             /:path                 200
+/*.css                            /:path                 200
+/*.jpg                            /:path                 200
+/*.jpeg                           /:path                 200
+/*.png                            /:path                 200
+/*.gif                            /:path                 200
+/*.svg                            /:path                 200
+/*.mp4                            /:path                 200
+/*.m4a                            /:path                 200
+/*                                /index.html            200
